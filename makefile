@@ -13,10 +13,10 @@ CFLAGS=-c -Wall $(DEBUG)
 all: $(TARGET)
 
 $(TARGET): main.o 
-	$(CC) -o $(TARGET) main.o
+	$(CC) -o $(TARGET) main.o -lpthread -no-pie
 
 main.o: main.c
-	$(CC) $(CFLAGS) main.c
+	$(CC) $(CFLAGS) main.c -no-pie
 
 clean:
 	rm *.o *~ $(TARGET)
