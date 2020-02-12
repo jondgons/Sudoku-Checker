@@ -126,6 +126,7 @@ void print(){
     for(int j = 0; j < PUZZLE_SIZE; j++){
       printf("%d", solution[i][j]);
     }
+    printf("\n");
   }
   printf("\n");
 }
@@ -157,14 +158,14 @@ void* checkRows(void* par){
     for(int j = 0; j < PUZZLE_SIZE; j++){
       int n = solution[i][j]; //ease of access
       
-      if(n >= 1 || n <= 9){
+      if(n >= 1 || n <= PUZZLE_SIZE){
 	num_counter[n - 1]++; //update num_counter for each number; 1 is good
       }
     }
 
     //making sure 1-9 are present
     for(int j = 0; j < PUZZLE_SIZE; j++){
-      if(num_counter == 1){
+      if(num_counter[j] == 1){
 	num_total++;
       }
     }
@@ -179,6 +180,8 @@ void* checkRows(void* par){
   if(goodRows == PUZZLE_SIZE){
     thread_checks[rowData->id] = 1;
   }
+
+  return 0;
 }
 
 void* checkCols(void* par){
@@ -219,6 +222,8 @@ void* checkCols(void* par){
   if(goodCols == PUZZLE_SIZE){
     thread_checks[colData->id] = 1;
   }
+
+  return 0;
 }
 
 void* checkSquare(void* par){
@@ -230,7 +235,7 @@ void* checkSquare(void* par){
     for(int j = squareData->col; j < squareData->col + 3; j++){
       int n = solution[i][j]; //ease of access
 
-      if(n >= 1 || n <= 9){
+      if(n >= 1 || n <= PUZZLE_SIZE){
 	num_counter[n - 1]++; //update num_counter for each number; 1 is good
       }
     }
@@ -247,4 +252,6 @@ void* checkSquare(void* par){
   if(num_total == PUZZLE_SIZE){
     thread_checks[squareData->id] = 1;
   }
+
+  return 0;
 }
