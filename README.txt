@@ -1,5 +1,5 @@
 --Program Information--
-  Name: Cody Gonsowski & Ethan Seiber
+  Name: Cody Gonsowski
   Date: 02/12/2020
   Assignment: Assignment #2
   Program Title: Sudoku Checker
