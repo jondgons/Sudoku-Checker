@@ -1,4 +1,4 @@
-/*Name: Cody Gonsowski & Ethan Seiber
+/*Name: Cody Gonsowski
  *Date: 02/12/2019
  *File: main.c
  *Desc: Main driver of the sudoku checker program.
@@ -45,11 +45,44 @@ parameters* threadParameters(int row, int col, int id);
    Prepares pthreads for processing by providing them the necessary information.
   Inputs:
    int row
-    Position of row that 
+    Position of row that checker starts at.
+   int col
+    Position of col that checker starts at.
+   int id
+    ID of thread that will be processing stuff.
+  Result:
+   Threads should be ready to process workloads with respective parameters.
 */
 void* checkRows(void* par);
+/*
+  Desc:
+   Checks all rows in puzzle to ensure they are valid and have accurate numbers.
+  Inputs:
+   void* par
+    Parameters passed in by threads for processing.
+  Result:
+   All rows are valid or invalid. Thread indicates that job is complete if valid.
+*/
 void* checkCols(void* par);
+/*
+  Desc:
+   Checks all column in puzzle to ensure they are valid and have accurate numbers.
+  Inputs:
+   void* par
+    Parameters passed in by threads for processing.
+  Result:
+   All columns are valid or invalid. Thread indicates that job is complete if valid.
+*/
 void* checkSquare(void* par);
+/*
+  Desc:
+   Checks a square in the puzzle to ensure it is valid and has accurate numbers.
+  Inputs:
+   void* par
+    Parameters passed in by threads for processing.
+  Result:
+   Square is valid or invalid. Thread indicates that job is complete if valid.
+*/
 
 
 int main(int argc, char* argv[]){
